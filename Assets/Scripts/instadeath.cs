@@ -18,8 +18,8 @@ public class instadeath : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
             
-            if(other.gameObject.CompareTag("Player")){
-                other.gameObject.SetActive(false);
+            if(other.gameObject.TryGetComponent<Damage>(out Damage dmg)){
+                dmg.takeDamage(999);
             }
 
         }
