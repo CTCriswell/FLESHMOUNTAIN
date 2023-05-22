@@ -22,7 +22,7 @@ public class EnemyDamage : MonoBehaviour
 
     public void takeDamage(int ouch){
         health -= ouch;
-        SpawnText(ouch);
+        StartCoroutine(SpawnText_CR(ouch));
         if (health<=0){
             isDead = true;
             health = 0;
@@ -38,23 +38,20 @@ public class EnemyDamage : MonoBehaviour
     public int getHealth(){
         return health;
     }
-    public void SpawnText(int dmg){
+    private IEnumerator SpawnText_CR(int dmg){
         GameObject newSpawnTxt = Instantiate(DmgText, transform.position, Quaternion.identity);
         TMP_Text dmgObj;
         dmgObj = newSpawnTxt.GetComponent<TMP_Text>();
         dmgObj.text = ""+dmg;
-        StartCoroutine(SpawnTextCR(newSpawnTxt));
-        Destroy(newSpawnTxt, 1.5f);
-    }
-    private IEnumerator SpawnTextCR(GameObject text){
         int t = 150;
         //Debug.Log("textStart");
         while(t>0){
             //Debug.Log("Move");
-            text.transform.Translate(new Vector3(0.01f,0.01f,0f));
+            newSpawnTxt.transform.Translate(new Vector3(0.01f,0.01f,0f));
             t--;
             yield return null;
         }
+        Destroy(newSpawnTxt, 1.5f);
     }
 }
 

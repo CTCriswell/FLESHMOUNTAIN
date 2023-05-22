@@ -17,9 +17,9 @@ TagManager:
   - UI
   - GroundLayer
   - Enemy
-  - 
-  - 
-  - 
+  - HurtBox
+  - Character
+  - HitBox
   - 
   - 
   - 
