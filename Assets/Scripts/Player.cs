@@ -4,28 +4,39 @@ using UnityEngine;
 
 public class Player : Character
 {
-    public int Move;
-    private int Vert;
+    private sbyte Vert;
     public Vector2 shotDir = new Vector2(1,1);
-    public float shotAirBoost = 0;
-    private float shotVelx, shotVely;
+    public float shotAirCarry = 0;
+    //private float shotVelx, shotVely;
     public sbyte reloadDelay;
     public sbyte reloading;
-    private Vector2 Recoil = new Vector2(10,10);
+    private Vector2 Recoil = new Vector2(2,6);
     private BoxCollider2D hurtbox;
-    private Vector2 collisionBottom, collisionLeft, collisionRight;
-    private Collider2D[] collidersBottom, collidersLeft, collidersRight;
-    private float collisionRadius = 0.15f;
+    private BoxCollider2D bc;
+    //private float collisionRadius = 0.15f;
     private int jumpVel;
     private byte jumpBuffer;
     private Vector2 shootAccel = new Vector2 (0,0);
     private IEnumerator JumpFunc, ShootFunc;
-    private int jumpAccel = 25;
+    private int jumpAccel = 5;
+    private float inertia;
 
-    // Start is called before the first frame update
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(collisionBottom,collisionRadius);
+        Gizmos.DrawWireSphere(collisionLeft,collisionRadius);
+        Gizmos.DrawWireSphere(collisionRight,collisionRadius);
+    }
+
     protected override void Start()
     {
-        base.Start();
+        health = maxHealth;
+        sr = GetComponent<SpriteRenderer>();
+        bc = GetComponent<BoxCollider2D>();
+        rb = GetComponent<Rigidbody2D>();
+        sr.sprite = sprite_main;
+
+        isDead = false;
         hurtbox = transform.Find("PlayerHurtBox").GetComponent<BoxCollider2D>();
 
         JumpFunc = JumpFunc_CR();
@@ -33,6 +44,10 @@ public class Player : Character
 
         reloading = 0;
         reloadDelay = 16;
+
+        collisionRadius = bc.size.x/2;
+        friction = 0.4f;
+        inertia = 0;
     }
 
     protected override void Update()
@@ -44,8 +59,10 @@ public class Player : Character
         else sr.flipX = true;
 
         if(!isDead){
-            Move = (int) Input.GetAxisRaw("Horizontal"); // Inputs
-            Vert = (int) Input.GetAxisRaw("Vertical");
+            CollisionUpdate();
+            
+            Move = (sbyte) Input.GetAxisRaw("Horizontal"); // Inputs
+            Vert = (sbyte) Input.GetAxisRaw("Vertical");
 
             if(Input.GetButtonDown("Jump")){
                 //JumpFunc.Reset();
@@ -61,36 +78,43 @@ public class Player : Character
                 Respawn();
             }
         }
-        
     }
     protected override void FixedUpdate()
     {
         if(!isDead){
             MoveFunc();
-            if(System.Math.Abs(Velocity.x) < 0.5 && Move == 0){ // stops you if slow enough
+            if(System.Math.Abs(Velocity.x) < friction && Move == 0){ // stops you if slow enough
                 Velocity.x = 0;
+                runAccel = 0;
             }
         }
-        CollisionUpdate();
+        
 
-        if(!InAir && System.Math.Abs(Velocity.x) > topSpeed){// general friction
+        if(!InAir && System.Math.Abs(Velocity.x) > topSpeed){// non running friction
 
         //    vvv           how much faster than topSpeed/2         Reduce      Extract velocity.x sign
-            Velocity.x -= (System.Math.Abs(Velocity.x)-topSpeed/2) *0.25f* (Velocity.x/System.Math.Abs(Velocity.x));
+            Velocity.x -= (System.Math.Abs(Velocity.x)-topSpeed/2) *0.025f* (Velocity.x/System.Math.Abs(Velocity.x));
         }
-
-        rb.velocity = new Vector2(Velocity.x,rb.velocity.y + Velocity.y);
+        if(rb.velocity.y+Velocity.y > 8){
+            rb.velocity = new Vector2(Velocity.x,8);
+        } else {
+            rb.velocity = new Vector2(Velocity.x,rb.velocity.y + Velocity.y);
+        }
+        
     }
     protected override void MoveFunc(){
         if(InAir && Move == 0){runAccel = 0;}
-        else {runAccel = Move*0.75f;}
+        else {
+            runAccel = Move*inertia*0.2f;
+            if(inertia < 1) {inertia += 0.1f;}
+        }
 
         if(System.Math.Abs(rb.velocity.x) >= topSpeed && Velocity.x*runAccel > 0){ // cannot add speed past top speed, but can slow down
             runAccel = 0;
         }
 
         if(Move == 0 && !InAir && System.Math.Abs(Velocity.x)!=0){ // running friction
-            Velocity.x -= Velocity.x/System.Math.Abs(Velocity.x);
+            Velocity.x -= friction*Velocity.x/System.Math.Abs(Velocity.x);
         }
 
         Velocity.x += runAccel;
@@ -113,36 +137,43 @@ public class Player : Character
             Velocity.y -= jumpAccel;
         }
 
-        while(Input.GetButton("Jump") && rb.velocity.y > 10){// hold space bar to increase jump height
-            rb.gravityScale=6;
+        rb.gravityScale=1.5f;
+        while(Input.GetButton("Jump") && rb.velocity.y > 1){// hold space bar to increase jump height
             yield return new WaitForFixedUpdate();
         }
-        rb.gravityScale = 12;
+        rb.gravityScale = 3;
     }
 
     private IEnumerator ShootFunc_CR(){
         reloading = reloadDelay;
+        rb.gravityScale = 3;
         if(shotDir.x == 0 && shotDir.y == 0){// shoot where character is facing if no input
             if(isRight){shotDir.x = 1;}
             else{shotDir.x = -1;}
         }
         // one frame y shot boost
-        shootAccel.y = -shotDir.y*Recoil.y*2.5f;
+        shootAccel.y = -shotDir.y*Recoil.y;
 
-        if(rb.velocity.y < 0){
-            shootAccel.y += -rb.velocity.y;// shooting down is like a double jump instead of a slow down
-        }
+        // if(rb.velocity.y < 0){
+        //     shootAccel.y += -rb.velocity.y;// shooting down is like a double jump instead of a slow down
+        // }
         
-        Velocity.y += shootAccel.y; 
-        yield return new WaitForFixedUpdate();
-        Velocity.y -= shootAccel.y;
-
-        if(InAir){ // allows to quickly change horizontal direction unless going too fast
-            if(System.Math.Abs(shotAirBoost) < 32 && (-shotDir.x + shotAirBoost/System.Math.Abs(shotAirBoost)) == 0) {shotAirBoost = -shotDir.x*Recoil.x/10f;}
-            else {shotAirBoost += -shotDir.x*Recoil.x/10f;}
-        }
+        if(shootAccel.y!=0){
+            rb.velocity = new Vector2 (rb.velocity.x,shootAccel.y); 
+        } 
+        // Velocity.y = shootAccel.y;
+        // yield return new WaitForFixedUpdate();
+        // Velocity.y -= shootAccel.y;
 
         Velocity.x += -Recoil.x*shotDir.x*2;
+
+        // if(InAir){ // allows to quickly change horizontal direction unless going too fast
+        //     if(System.Math.Abs(shotAirCarry) <= 2 && System.Math.Abs(shotAirCarry)/shotAirCarry + shotDir.x == 0){
+        //         Velocity.x += -Recoil.x*shotDir.x*2;
+        //         shotAirCarry += shotDir.x;
+        //     }
+        //     shotAirCarry += shotDir.x;
+        // }
 
         // while(reloading >= reloadDelay - 15){
         //     shootAccel.x = Recoil.x*shotDir.x*(1/343)*(-675+70*(reloading-(reloadDelay - 15))-3*(reloading-(reloadDelay - 15))^2);
@@ -157,24 +188,25 @@ public class Player : Character
             reloading --;
             yield return new WaitForFixedUpdate();
         }
-
     }
 
     private void CollisionUpdate(){
-        collisionBottom = new Vector2(cc.transform.position.x,cc.transform.position.y-0.4f);
-        collisionRight = new Vector2(cc.transform.position.x+0.2f,cc.transform.position.y);
-        collisionLeft = new Vector2(cc.transform.position.x-0.2f,cc.transform.position.y);
+        collisionBottom = new Vector2(bc.transform.position.x,bc.transform.position.y-bc.size.y/2);
+        collisionRight = new Vector2(bc.transform.position.x+bc.size.x/2,bc.transform.position.y);
+        collisionLeft = new Vector2(bc.transform.position.x-bc.size.x/2,bc.transform.position.y);
 
         collidersBottom = Physics2D.OverlapCircleAll(collisionBottom,collisionRadius,groundLayer);
         collidersLeft = Physics2D.OverlapCircleAll(collisionLeft,collisionRadius,groundLayer);
         collidersRight = Physics2D.OverlapCircleAll(collisionRight,collisionRadius,groundLayer);
 
-        if(collidersBottom.Length > 0){InAir = false;}
+        if(collidersBottom.Length > 0){
+            InAir = false;
+            shotAirCarry = 0;
+        }
         else {InAir = true;}
         
         if(collidersLeft.Length > 0 || collidersRight.Length > 0){
-            shotVelx = 0;
-            shotAirBoost = 0;
+            shotAirCarry = 0;
             if(collidersLeft.Length > 0 && Velocity.x < 0){
                 Velocity.x = 0;
                 runAccel = 0;

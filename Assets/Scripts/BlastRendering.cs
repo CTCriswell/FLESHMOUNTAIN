@@ -10,7 +10,7 @@ public class BlastRendering : MonoBehaviour
     private BoxCollider2D bc;
     private Vector3 unitRelativePos;
     public float angle = 0;
-    private float distance = 2;
+    private float distance = 0.5f;
     public int gunDamage;
     // Start is called before the first frame update
     void Start()
@@ -27,22 +27,20 @@ public class BlastRendering : MonoBehaviour
     {
         if(p.reloading > p.reloadDelay - 15){// only renders blast when gun is fired
             sr.enabled = true;
-            bc.size = new Vector2(1,1);
+            bc.size = new Vector2(7.17f,2.55f);
+            transform.position = new Vector3(target.transform.position.x+p.shotDir.x*distance,target.transform.position.y+p.shotDir.y*distance,0);// sets position to player with an offset based on shot direction
+
+            unitRelativePos = (transform.position-target.transform.position);// vector describing relative position
+            //unitRelativePos = unitRelativePos/(float)(System.Math.Sqrt(System.Math.Pow(unitRelativePos.x,2)+System.Math.Pow(unitRelativePos.y,2)));// inverse square root to normalize vector
+            // ^ didnt need to normalize vector
+
+            angle =360 + (float)System.Math.Atan2(unitRelativePos.y,unitRelativePos.x)*(float)(180/System.Math.PI);// Gets angle of vector, I <3 UnitCircle
+            if(angle/angle +1 != 2){angle = 0f;}// catches if angle is NaN
+            transform.eulerAngles = new Vector3(360f,360f,angle);// sets angle
         } else {
             sr.enabled = false;
             bc.size = new Vector2(0,0);
         }
-
-        transform.position = new Vector3(target.transform.position.x+p.shotDir.x*distance,target.transform.position.y+p.shotDir.y*distance,0);// sets position to player with an offset based on shot direction
-
-        unitRelativePos = (transform.position-target.transform.position);// vector describing relative position
-        //unitRelativePos = unitRelativePos/(float)(System.Math.Sqrt(System.Math.Pow(unitRelativePos.x,2)+System.Math.Pow(unitRelativePos.y,2)));// inverse square root to normalize vector
-        // ^ didnt need to normalize vector
-
-        angle =360 + (float)System.Math.Atan2(unitRelativePos.y,unitRelativePos.x)*(float)(180/System.Math.PI);// Gets angle of vector, I <3 UnitCircle
-        if(angle/angle +1 != 2){angle = 0f;}// catches if angle is NaN
-        transform.eulerAngles = new Vector3(360f,360f,angle);// sets angle
-
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -50,13 +48,7 @@ public class BlastRendering : MonoBehaviour
         if (p.reloading> p.reloadDelay - 15 && other.CompareTag("Enemy"))
         {
             Enemy E = other.gameObject.GetComponentInParent<Enemy>();
-            if(!E.getDead())E.takeDamage(3);
+            if(E != null && !E.getDead())E.takeDamage(3);
         }
     }
-
-    // void OnDrawGizmos()
-    // {
-    //     bc = GetComponent<BoxCollider2D>();
-    //     Gizmos.color = Color.yellow;
-    // }
 }

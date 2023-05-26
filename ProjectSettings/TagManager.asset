@@ -20,8 +20,8 @@ TagManager:
   - HurtBox
   - Character
   - HitBox
-  - 
-  - 
+  - Background1
+  - Background2
   - 
   - 
   - 
@@ -42,6 +42,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background1
+    uniqueID: 3540232881
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

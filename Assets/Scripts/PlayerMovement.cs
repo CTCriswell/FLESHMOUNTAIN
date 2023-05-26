@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     public float shotAirBoost = 0;
     private int runT=0;
     public int reload=0;
-    private bool sprint;
+    //private bool sprint;
     public Sprite character;
     private CapsuleCollider2D cc;
     private Rigidbody2D rb;
@@ -84,9 +84,9 @@ public class PlayerMovement : MonoBehaviour
                 shotDir = new Vector2 (Move,Vert);
                 //if(InAir){shotAirCount ++;}
             }
-            if(Input.GetButton("Fire3")){
-                sprint = true;
-            } else {sprint = false;}
+            // if(Input.GetButton("Fire3")){
+            //     sprint = true;
+            // } else {sprint = false;}
 
             //if(jumpT>0){jumpT-=1;}// counting down timers
             if(fallJumpT>0){fallJumpT--;}

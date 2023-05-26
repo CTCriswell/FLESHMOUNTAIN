@@ -20,8 +20,8 @@ public class StaticEnemy : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.CompareTag("Player")){
-            Damage dmg = other.gameObject.GetComponent<Damage>();
-            dmg.takeDamage(damage);
+            other.gameObject.TryGetComponent<Player>(out Player play);
+            play.takeDamage(damage);
         }
     }
 }

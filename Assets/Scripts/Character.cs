@@ -9,7 +9,9 @@ public class Character : MonoBehaviour
     protected bool isDead;
     public bool isRight;
     public bool InAir;
-    protected Vector2 Velocity = new Vector2(0,0);
+    protected sbyte Move;
+    protected float friction;
+    public Vector2 Velocity = new Vector2(0,0);
     protected float runAccel = 0;
     public float topSpeed;
     public int iFrames = 0;
@@ -20,7 +22,10 @@ public class Character : MonoBehaviour
     protected Rigidbody2D rb;
     public Spawner spawner;
     public LayerMask groundLayer;
-    
+    protected Vector2 collisionBottom, collisionLeft, collisionRight;
+    protected Collider2D[] collidersBottom, collidersLeft, collidersRight;
+    protected float collisionRadius;
+
     protected virtual void Start()
     {
         health = maxHealth;
@@ -28,6 +33,8 @@ public class Character : MonoBehaviour
         cc = GetComponent<CapsuleCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         sr.sprite = sprite_main;
+        Move = 0;
+        friction = 0.3f;
 
         isDead = false;
     }
@@ -38,7 +45,7 @@ public class Character : MonoBehaviour
 
         if(isRight){sr.flipX = false;}
         else sr.flipX = true;
-        
+        collisionUpdate();
     }
 
     protected virtual void FixedUpdate() {
@@ -50,11 +57,20 @@ public class Character : MonoBehaviour
     }
 
     protected virtual void MoveFunc(){
-        Velocity.x += runAccel;
+        Velocity.x += Move*runAccel;
+
         if(System.Math.Abs(Velocity.x) >= topSpeed){
             Velocity.x = topSpeed * Velocity.x/System.Math.Abs(Velocity.x);
         }
-        rb.velocity = new Vector2(Velocity.x,rb.velocity.y);
+        if(Move == 0 && !InAir && System.Math.Abs(Velocity.x)!=0){ // running friction
+            Debug.Log("Slowing Down");
+            Velocity.x -= friction*Velocity.x/System.Math.Abs(Velocity.x);
+            if(System.Math.Abs(Velocity.x)<=friction){
+                Velocity.x = 0;
+            }
+        }
+        rb.velocity = new Vector2(Velocity.x,rb.velocity.y + Velocity.y);
+        Velocity.y = 0;
     }
 
     public void Respawn(){
@@ -96,10 +112,18 @@ public class Character : MonoBehaviour
         sr.color = new Color(1,1,1,0.66f); // becomes slightly transparent when damaged
         iFrames = 50;
         while(iFrames>0){
-            iFrames--;
-            yield return null;
+            iFrames--; // iFrame -= 1
+            yield return new WaitForFixedUpdate();
         }
         sr.color = new Color(1,1,1,1);
     }
+    protected void collisionUpdate(){
+        collisionBottom = new Vector2(cc.transform.position.x,cc.transform.position.y-(cc.size.y/2)*transform.localScale.y);
 
+        collidersBottom = Physics2D.OverlapCircleAll(collisionBottom,collisionRadius,groundLayer);
+        if(collidersBottom.Length > 0){
+            InAir = false;
+        }
+        else {InAir = true;}
+    }
 }
