@@ -33,7 +33,7 @@ public class Character : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         cc = GetComponent<CapsuleCollider2D>();
         rb = GetComponent<Rigidbody2D>();
-        ani = GetComponent<Animator>();
+        TryGetComponent<Animator>(out ani);
         sr.sprite = sprite_main;
         Move = 0;
         friction = 0.3f;
@@ -53,8 +53,17 @@ public class Character : MonoBehaviour
     protected virtual void FixedUpdate() {
         if(!isDead){
             MoveFunc();
-            ani.SetFloat("Velocity.y",rb.velocity.y);
-            ani.SetBool("inAir",InAir);
+            try
+            {
+                ani.SetFloat("Velocity.y",rb.velocity.y);
+                ani.SetBool("inAir",InAir);
+            }
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
+            
         } else {
             Velocity = new Vector2(0,0);
         }
