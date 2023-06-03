@@ -10,7 +10,6 @@ public class Hedgehog : Enemy
         maxHealth = 10;
         base.Start();
         runAccel = 0.2f;
-        topSpeed = 0.5f;
         //meleeDamage = 3;
         StartCoroutine(Idle_CR());
         play = player.GetComponent<Player>();
@@ -20,8 +19,8 @@ public class Hedgehog : Enemy
         Gizmos.DrawWireSphere(collisionBottom,collisionRadius);
     }
     private IEnumerator Idle_CR(){
+        topSpeed = 0.5f;
         while(!isDead){
-
             Move = (sbyte) Random.Range(-2,2);
 
             for(int i = 0; i<50; i++){
@@ -68,6 +67,7 @@ public class Hedgehog : Enemy
             }
             yield return new WaitForFixedUpdate();
             if(System.Math.Abs(playerxDis)>=3.5f){
+                topSpeed = 0.5f;
                 break;
             }
             // Move = 0;

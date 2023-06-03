@@ -53,15 +53,9 @@ public class Character : MonoBehaviour
     protected virtual void FixedUpdate() {
         if(!isDead){
             MoveFunc();
-            try
-            {
+            if(ani != null){
                 ani.SetFloat("Velocity.y",rb.velocity.y);
                 ani.SetBool("inAir",InAir);
-            }
-            catch (System.Exception)
-            {
-                
-                throw;
             }
             
         } else {
