@@ -17,6 +17,7 @@ public class Enemy : Character
         base.Start();
         hitbox = GetComponentsInChildren<BoxCollider2D>();// gets all of the hitbox children and puts in this array
         collisionRadius=0.03f;
+        player = GameObject.Find("Player");
     }
 
     protected override void FixedUpdate()

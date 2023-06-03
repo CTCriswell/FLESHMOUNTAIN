@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    private Animator ani;
     protected int health;
     public int maxHealth;
     protected bool isDead;
@@ -32,6 +33,7 @@ public class Character : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         cc = GetComponent<CapsuleCollider2D>();
         rb = GetComponent<Rigidbody2D>();
+        ani = GetComponent<Animator>();
         sr.sprite = sprite_main;
         Move = 0;
         friction = 0.3f;
@@ -51,6 +53,8 @@ public class Character : MonoBehaviour
     protected virtual void FixedUpdate() {
         if(!isDead){
             MoveFunc();
+            ani.SetFloat("Velocity.y",rb.velocity.y);
+            ani.SetBool("inAir",InAir);
         } else {
             Velocity = new Vector2(0,0);
         }

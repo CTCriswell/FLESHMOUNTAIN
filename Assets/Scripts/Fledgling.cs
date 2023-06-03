@@ -22,14 +22,14 @@ public class Fledgling : Enemy
     private void hop(bool right, float power){
         Velocity.x += power;
         if(!right){Velocity.x *= -1;}
-        Velocity.y += power;
+        Velocity.y += 2*power;
     }
 
     private IEnumerator Jumping_CR(){
         while(true){
             if(isDead){break;}
             if(System.Math.Abs(playerxDis) < 2){
-                hop(playerIsRight,1.5f);
+                hop(playerIsRight,1.25f);
             } else {
                 hop(playerIsRight,1);
             }

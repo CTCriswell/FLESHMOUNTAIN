@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3645432412678177790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0106, y: -0.002, z: 0}
+  m_LocalPosition: {x: -0.0156, y: -0.0321, z: 0}
   m_LocalScale: {x: 0.5794976, y: 1.0039104, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -85,6 +85,7 @@ GameObject:
   - component: {fileID: 3645432413484519022}
   - component: {fileID: 3645432413484519018}
   - component: {fileID: 3645432413484519017}
+  - component: {fileID: 6049245452380258249}
   m_Layer: 9
   m_Name: Fledgeling
   m_TagString: Enemy
@@ -149,7 +150,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 53010edf6c017b44bab1f32355d7cd9c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 07a5e60d6b9aada4e97b61044e586eb3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -173,8 +174,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00020420551, y: -0.00020425022}
-  m_Size: {x: 0.088154554, y: 0.10231754}
+  m_Offset: {x: -0.005, y: -0.03}
+  m_Size: {x: 0.09, y: 0.1}
   m_Direction: 0
 --- !u!50 &3645432413484519018
 Rigidbody2D:
@@ -215,7 +216,7 @@ MonoBehaviour:
   Velocity: {x: 0, y: 0}
   topSpeed: 2
   iFrames: 0
-  sprite_main: {fileID: 21300000, guid: 53010edf6c017b44bab1f32355d7cd9c, type: 3}
+  sprite_main: {fileID: 21300000, guid: 07a5e60d6b9aada4e97b61044e586eb3, type: 3}
   sprite_dead: {fileID: 21300000, guid: 41cdae52c93bbd44392440b88eb98a8e, type: 3}
   spawner: {fileID: 0}
   groundLayer:
@@ -223,3 +224,24 @@ MonoBehaviour:
     m_Bits: 64
   DmgText: {fileID: 5088843594966138845, guid: ee9a67b188d3671448c63ed9b851e0e6, type: 3}
   player: {fileID: 0}
+--- !u!95 &6049245452380258249
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3645432413484519008}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6a53811b7ba1a4a4aba350de423cf07b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
