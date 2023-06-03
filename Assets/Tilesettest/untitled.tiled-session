@@ -10,11 +10,11 @@
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "MapTest1.tmx": {
-            "scale": 1,
+            "scale": 1.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": -186.5,
-                "y": 153
+                "x": 153,
+                "y": 66
             }
         },
         "TESTY.tsx": {

@@ -63,7 +63,7 @@ public class Character : MonoBehaviour
             Velocity.x = topSpeed * Velocity.x/System.Math.Abs(Velocity.x);
         }
         if(Move == 0 && !InAir && System.Math.Abs(Velocity.x)!=0){ // running friction
-            Debug.Log("Slowing Down");
+            //Debug.Log("Slowing Down");
             Velocity.x -= friction*Velocity.x/System.Math.Abs(Velocity.x);
             if(System.Math.Abs(Velocity.x)<=friction){
                 Velocity.x = 0;
@@ -118,8 +118,7 @@ public class Character : MonoBehaviour
         sr.color = new Color(1,1,1,1);
     }
     protected void collisionUpdate(){
-        collisionBottom = new Vector2(cc.transform.position.x,cc.transform.position.y-(cc.size.y/2)*transform.localScale.y);
-
+        collisionBottom = new Vector2(cc.transform.position.x,cc.transform.position.y-(cc.size.y/2)*transform.localScale.y+cc.offset.y);
         collidersBottom = Physics2D.OverlapCircleAll(collisionBottom,collisionRadius,groundLayer);
         if(collidersBottom.Length > 0){
             InAir = false;

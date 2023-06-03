@@ -4,38 +4,84 @@ using UnityEngine;
 
 public class Hedgehog : Enemy
 {
-    // Start is called before the first frame update
+    public GameObject projectileHedgehog;
     protected override void Start()
     {
         maxHealth = 10;
         base.Start();
         runAccel = 0.2f;
-        topSpeed = 1;
-        meleeDamage = 3;
+        topSpeed = 0.5f;
+        //meleeDamage = 3;
         StartCoroutine(Idle_CR());
         play = player.GetComponent<Player>();
     }
-
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(collisionBottom,collisionRadius);
+    }
     private IEnumerator Idle_CR(){
-        float t;
-        while(true){
-            t = 100;
-            while(t != 0){
-                //if(System.Math.Abs(playerxDis) < 1.5f){break;}
-                if(t == 95){
-                    Move = (sbyte) Random.Range(-2,2);
-                }
-                if(t == 65){
-                    Move = 0;
-                }
-                t--;
+        while(!isDead){
+
+            Move = (sbyte) Random.Range(-2,2);
+
+            for(int i = 0; i<50; i++){
                 yield return new WaitForFixedUpdate();
+                if(System.Math.Abs(playerxDis) < 2){
+                    yield return StartCoroutine(AttackPlayer_CR());
+                }
             }
-            //yield return StartCoroutine(AttackPlayer_CR());
+
+            Move = (sbyte) 0;
+
+            for(int i = 0; i<100; i++){
+                yield return new WaitForFixedUpdate();
+                if(System.Math.Abs(playerxDis) < 2){
+                    yield return StartCoroutine(AttackPlayer_CR());
+                }
+            }
         }
     }
 
+    private void Shoot(){
+        GameObject Proj = Instantiate(projectileHedgehog,transform.position,Quaternion.identity);
+        EnemyProjectile ep = Proj.GetComponent<EnemyProjectile>();
+        ep.velocity = new Vector2(3.5f*playerxDis/System.Math.Abs(playerxDis),3f);
+        Destroy(Proj,15);
+    }
+
     private IEnumerator AttackPlayer_CR(){
-        yield return null;
+        topSpeed = 2.2f;
+        while(!isDead){
+            Move = (sbyte)(-(playerxDis/System.Math.Abs(playerxDis)));
+            if(System.Math.Abs(playerxDis)>2){
+                Move = 0;
+                yield return new WaitForSeconds(0.15f);
+                if(playerxDis/System.Math.Abs(playerxDis) == 1){
+                    isRight = true;
+                } else {
+                    isRight = false;
+                }
+                while(System.Math.Abs(playerxDis)>2 && System.Math.Abs(playerxDis)<3.5f){
+                    Shoot();
+                    yield return new WaitForSeconds(0.75f);
+                }
+            }
+            yield return new WaitForFixedUpdate();
+            if(System.Math.Abs(playerxDis)>=3.5f){
+                break;
+            }
+            // Move = 0;
+            // yield return new WaitForSeconds(0.15f);
+            // if(playerxDis/System.Math.Abs(playerxDis) == 1){
+            //     isRight = true;
+            // } else {
+            //     isRight = false;
+            // }
+            // yield return new WaitForSeconds(0.05f);
+            // Shoot();
+            // yield return new WaitForSeconds(0.3f);
+            // Move = (sbyte)(-(playerxDis/System.Math.Abs(playerxDis)));
+            // yield return new WaitForSeconds(1);
+        }
     }
 }

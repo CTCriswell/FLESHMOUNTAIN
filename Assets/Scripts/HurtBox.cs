@@ -18,13 +18,5 @@ public class HurtBox : MonoBehaviour
     {
         
     }
-    void OnTriggerStay2D(Collider2D other)
-    {
-        Debug.Log("Hitbox found");
-        if(other.gameObject.layer == 10){
-            Enemy uhoh;
-            uhoh = other.gameObject.GetComponentInParent<Enemy>();
-            if(!uhoh.getDead())play.takeDamage(uhoh.getDamage());
-        }
-    }
 }
+

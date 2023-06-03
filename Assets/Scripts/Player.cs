@@ -12,7 +12,8 @@ public class Player : Character
     public sbyte reloading;
     private Vector2 Recoil = new Vector2(2,6);
     private BoxCollider2D hurtbox;
-    private BoxCollider2D bc;
+    private PolygonCollider2D bc;
+    //private BoxCollider2D bc;
     //private float collisionRadius = 0.15f;
     private int jumpVel;
     private byte jumpBuffer;
@@ -32,7 +33,7 @@ public class Player : Character
     {
         health = maxHealth;
         sr = GetComponent<SpriteRenderer>();
-        bc = GetComponent<BoxCollider2D>();
+        bc = GetComponent<PolygonCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         sr.sprite = sprite_main;
 
@@ -45,7 +46,7 @@ public class Player : Character
         reloading = 0;
         reloadDelay = 16;
 
-        collisionRadius = bc.size.x/2;
+        collisionRadius = 0.05f;
         friction = 0.4f;
         inertia = 0;
     }
@@ -191,9 +192,9 @@ public class Player : Character
     }
 
     private void CollisionUpdate(){
-        collisionBottom = new Vector2(bc.transform.position.x,bc.transform.position.y-bc.size.y/2);
-        collisionRight = new Vector2(bc.transform.position.x+bc.size.x/2,bc.transform.position.y);
-        collisionLeft = new Vector2(bc.transform.position.x-bc.size.x/2,bc.transform.position.y);
+        collisionBottom = new Vector2(bc.transform.position.x,bc.transform.position.y-0.26f/2);
+        collisionRight = new Vector2(bc.transform.position.x+0.08f,bc.transform.position.y);
+        collisionLeft = new Vector2(bc.transform.position.x-0.08f,bc.transform.position.y);
 
         collidersBottom = Physics2D.OverlapCircleAll(collisionBottom,collisionRadius,groundLayer);
         collidersLeft = Physics2D.OverlapCircleAll(collisionLeft,collisionRadius,groundLayer);
@@ -210,12 +211,12 @@ public class Player : Character
             if(collidersLeft.Length > 0 && Velocity.x < 0){
                 Velocity.x = 0;
                 runAccel = 0;
-                Debug.Log(collidersLeft[0].gameObject.name);
+                //Debug.Log(collidersLeft[0].gameObject.name);
             }
             if(collidersRight.Length > 0 && Velocity.x > 0){
                 Velocity.x = 0;
                 runAccel = 0;
-                Debug.Log(collidersRight[0].gameObject.name);
+                //Debug.Log(collidersRight[0].gameObject.name);
             }
         }
     }

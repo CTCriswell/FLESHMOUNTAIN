@@ -5,7 +5,7 @@ using TMPro;
 
 public class Enemy : Character
 {
-    protected int meleeDamage;
+    //protected int meleeDamage;
     private BoxCollider2D[] hitbox; 
     public GameObject DmgText;
     public GameObject player;
@@ -46,9 +46,9 @@ public class Enemy : Character
         }
         Destroy(newSpawnTxt, 1.5f);
     }
-    public int getDamage(){
-        return meleeDamage;
-    }
+    // public int getDamage(){
+    //     return meleeDamage;
+    // }
 
     
 }

@@ -5,11 +5,11 @@ using UnityEngine;
 public class Fledgling : Enemy
 {
     protected override void Start() {
-        maxHealth = 99;
+        maxHealth = 5;
         base.Start();
         runAccel = 0;
         topSpeed = 2;
-        meleeDamage = 3;
+        //meleeDamage = 3;
         StartCoroutine(Jumping_CR());
         play = player.GetComponent<Player>();
     }
@@ -26,19 +26,14 @@ public class Fledgling : Enemy
     }
 
     private IEnumerator Jumping_CR(){
-        byte t;
         while(true){
             if(isDead){break;}
-            t = 80;
             if(System.Math.Abs(playerxDis) < 2){
                 hop(playerIsRight,1.5f);
             } else {
-                hop(playerIsRight,.75f);
+                hop(playerIsRight,1);
             }
-            while(t>0){
-                t--;
-                yield return new WaitForFixedUpdate();
-            }
+            yield return new WaitForSeconds(2);
         }
     }
 }
