@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5c79a1b107697b44092a39b0b97cc6a7
+guid: 1f4f63f1c5f489f4f93faf248c7533e4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
@@ -101,29 +101,17 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Flesh_Goo_ATTACK_0
+      name: Flesh_Goo_JUMP_EASE_IN_Outline_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,62 +119,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90e8fa1fb84e94e438555904d7c22dd6
-      internalID: 337903196
+      spriteID: 87a7bb8411cb68744b5bcdbce34f0df9
+      internalID: -1562502925
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flesh_Goo_ATTACK_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2ce0c19884d3a594da445571fd2df334
-      internalID: 1433281348
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flesh_Goo_ATTACK_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 212f052832a47aa48a7578f51ee22c3e
-      internalID: 960674584
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flesh_Goo_ATTACK_3
+      name: Flesh_Goo_JUMP_EASE_IN_Outline_1
       rect:
         serializedVersion: 2
         x: 48
         y: 0
-        width: 16
-        height: 16
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,62 +140,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 146e6c20e981522428d995a97deb665b
-      internalID: -534291482
+      spriteID: 4b7eed49f7ab97a4ea6d7a354a7b190a
+      internalID: 1724550873
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flesh_Goo_ATTACK_4
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a3439b68591324d4099b94ac0c640ee6
-      internalID: 1031592559
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flesh_Goo_ATTACK_5
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bcca0868d290b4444a73e39da824274d
-      internalID: 1531069644
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flesh_Goo_ATTACK_6
+      name: Flesh_Goo_JUMP_EASE_IN_Outline_2
       rect:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 16
-        height: 16
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,20 +161,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3d0ae1c96eb59543bfd06b62f094119
-      internalID: 1067354581
+      spriteID: 8cc5cbf02ed091844892066f907fe7e1
+      internalID: -797388025
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flesh_Goo_ATTACK_7
+      name: Flesh_Goo_JUMP_EASE_IN_Outline_3
       rect:
         serializedVersion: 2
-        x: 112
+        x: 144
         y: 0
-        width: 16
-        height: 16
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,20 +182,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b92901016ad21dc429f3d906969fed23
-      internalID: 909991074
+      spriteID: ee0ad9be5ea8c4e4fbb4d179be2dd6d6
+      internalID: 1902501795
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flesh_Goo_ATTACK_8
+      name: Flesh_Goo_JUMP_EASE_IN_Outline_4
       rect:
         serializedVersion: 2
-        x: 128
+        x: 192
         y: 0
-        width: 16
-        height: 16
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -299,8 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71574f5110c29ed41be7be8900cf4495
-      internalID: 1263580791
+      spriteID: d19774cd8607e00439c194544d645fc8
+      internalID: 2048201506
       vertices: []
       indices: 
       edges: []
@@ -316,15 +220,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Flesh_Goo_ATTACK_0: 337903196
-      Flesh_Goo_ATTACK_1: 1433281348
-      Flesh_Goo_ATTACK_2: 960674584
-      Flesh_Goo_ATTACK_3: -534291482
-      Flesh_Goo_ATTACK_4: 1031592559
-      Flesh_Goo_ATTACK_5: 1531069644
-      Flesh_Goo_ATTACK_6: 1067354581
-      Flesh_Goo_ATTACK_7: 909991074
-      Flesh_Goo_ATTACK_8: 1263580791
+      Flesh_Goo_JUMP_EASE_IN_Outline_0: -1562502925
+      Flesh_Goo_JUMP_EASE_IN_Outline_1: 1724550873
+      Flesh_Goo_JUMP_EASE_IN_Outline_2: -797388025
+      Flesh_Goo_JUMP_EASE_IN_Outline_3: 1902501795
+      Flesh_Goo_JUMP_EASE_IN_Outline_4: 2048201506
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

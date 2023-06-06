@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 582beeb86ebce08418040d7f1ad30e79
+guid: 5336481ecf15ecd4fa173424525531c7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
@@ -101,29 +101,17 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Flesh_Goo._IDLE_1_0
+      name: Flesh_Goo._IDLE_Outline_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,62 +119,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd0573d6952ac9f47a727e4385a42c28
-      internalID: 998087814
+      spriteID: 9c3d7bc17c5315e478f94718f06a7a3a
+      internalID: -942399130
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flesh_Goo._IDLE_1_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: faa98eb7e921816439e1fcf99897f2d4
-      internalID: -612401205
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flesh_Goo._IDLE_1_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1d77219e13b5a55498be86bcc89d034a
-      internalID: 805406269
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flesh_Goo._IDLE_1_3
+      name: Flesh_Goo._IDLE_Outline_1
       rect:
         serializedVersion: 2
         x: 48
         y: 0
-        width: 16
-        height: 16
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,62 +140,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba5b76e4ef89af54988ff96762117fcf
-      internalID: 2079924898
+      spriteID: 50dde41dfed114245a13c8296442cd78
+      internalID: -248163951
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flesh_Goo._IDLE_1_4
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9a3a10db730e31645b3d0b011d36adad
-      internalID: -1025306990
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flesh_Goo._IDLE_1_5
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: feeefc57921b7c348900b38dbf55f8f2
-      internalID: 1532704809
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flesh_Goo._IDLE_1_6
+      name: Flesh_Goo._IDLE_Outline_2
       rect:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 16
-        height: 16
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,62 +161,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c133a66284a24949b865fb88a1f56e9
-      internalID: -749100838
+      spriteID: 6004116e248866440896732e8cf553e1
+      internalID: -1004751196
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flesh_Goo._IDLE_1_7
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7f945b11890524747ac9284fe6ead55e
-      internalID: -1115142786
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flesh_Goo._IDLE_1_8
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 76b9ff9cf39834c4792f51fc2ac0ab21
-      internalID: -395961371
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flesh_Goo._IDLE_1_9
+      name: Flesh_Goo._IDLE_Outline_3
       rect:
         serializedVersion: 2
         x: 144
         y: 0
-        width: 16
-        height: 16
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -320,20 +182,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c299df058529b24099ad78ce14e1222
-      internalID: -366108034
+      spriteID: 84e8dc5e7e5c5b94181b0bcdd3cbe0f7
+      internalID: 844353063
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flesh_Goo._IDLE_1_10
+      name: Flesh_Goo._IDLE_Outline_4
       rect:
         serializedVersion: 2
-        x: 160
+        x: 192
         y: 0
-        width: 16
-        height: 16
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -341,20 +203,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7ea815d99c916649a128826016f38e3
-      internalID: 463208328
+      spriteID: 661869c92fdf6584bb88773efd0048ec
+      internalID: -1494390284
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flesh_Goo._IDLE_1_11
+      name: Flesh_Goo._IDLE_Outline_5
       rect:
         serializedVersion: 2
-        x: 176
+        x: 240
         y: 0
-        width: 16
-        height: 16
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -362,8 +224,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b650c8d0ad9ad04abf87216bd72f0ab
-      internalID: 1751500385
+      spriteID: 2c387921eacba864d823937c0a33820c
+      internalID: 1478788469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flesh_Goo._IDLE_Outline_6
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b175d1d41ce5984db6a1b40546efed3
+      internalID: -554974936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flesh_Goo._IDLE_Outline_7
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b331574769b844645b5e5480148fb001
+      internalID: 399184417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flesh_Goo._IDLE_Outline_8
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 251e1c9a458dc9345a3e58dbb39aa5eb
+      internalID: 223202140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flesh_Goo._IDLE_Outline_9
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78d4836b06af094438fcdf31bd1c51aa
+      internalID: -1025471721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flesh_Goo._IDLE_Outline_10
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b8322e1de5d1ae4dba740a666efb685
+      internalID: -791097244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flesh_Goo._IDLE_Outline_11
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfe89f64b1d04764885487902c1cabfe
+      internalID: -1497932696
       vertices: []
       indices: 
       edges: []
@@ -379,18 +367,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Flesh_Goo._IDLE_1_0: 998087814
-      Flesh_Goo._IDLE_1_1: -612401205
-      Flesh_Goo._IDLE_1_10: 463208328
-      Flesh_Goo._IDLE_1_11: 1751500385
-      Flesh_Goo._IDLE_1_2: 805406269
-      Flesh_Goo._IDLE_1_3: 2079924898
-      Flesh_Goo._IDLE_1_4: -1025306990
-      Flesh_Goo._IDLE_1_5: 1532704809
-      Flesh_Goo._IDLE_1_6: -749100838
-      Flesh_Goo._IDLE_1_7: -1115142786
-      Flesh_Goo._IDLE_1_8: -395961371
-      Flesh_Goo._IDLE_1_9: -366108034
+      Flesh_Goo._IDLE_Outline_0: -942399130
+      Flesh_Goo._IDLE_Outline_1: -248163951
+      Flesh_Goo._IDLE_Outline_10: -791097244
+      Flesh_Goo._IDLE_Outline_11: -1497932696
+      Flesh_Goo._IDLE_Outline_2: -1004751196
+      Flesh_Goo._IDLE_Outline_3: 844353063
+      Flesh_Goo._IDLE_Outline_4: -1494390284
+      Flesh_Goo._IDLE_Outline_5: 1478788469
+      Flesh_Goo._IDLE_Outline_6: -554974936
+      Flesh_Goo._IDLE_Outline_7: 399184417
+      Flesh_Goo._IDLE_Outline_8: 223202140
+      Flesh_Goo._IDLE_Outline_9: -1025471721
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

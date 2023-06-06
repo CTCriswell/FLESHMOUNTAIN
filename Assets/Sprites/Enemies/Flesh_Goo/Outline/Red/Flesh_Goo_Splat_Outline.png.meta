@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fc18767dbe76b874581a8b70890cefe5
+guid: a89883c56cad94e498497dc2a0ba3282
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
@@ -101,29 +101,17 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Flesh_Goo_JUMP_EASE_IN_0
+      name: Flesh_Goo_Splat_Outline_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,62 +119,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 251585648d26bcf4c81e29671422aacb
-      internalID: -1748296369
+      spriteID: 2d7759b413a0a6245afba0d1454fddf7
+      internalID: 51800294
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flesh_Goo_JUMP_EASE_IN_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6ca12a077e34e6a4fa5d3a247599587a
-      internalID: 1835476197
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flesh_Goo_JUMP_EASE_IN_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5c9386883d58a70478ad5014e2389f0c
-      internalID: -1798059161
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flesh_Goo_JUMP_EASE_IN_3
+      name: Flesh_Goo_Splat_Outline_1
       rect:
         serializedVersion: 2
         x: 48
         y: 0
-        width: 16
-        height: 16
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,20 +140,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be3d3a9e0dd46fd44a04ecc83da9dca2
-      internalID: -519779592
+      spriteID: 61668a0113b3163448d32b5ae8b773f1
+      internalID: -665822667
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flesh_Goo_JUMP_EASE_IN_4
+      name: Flesh_Goo_Splat_Outline_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 96
         y: 0
-        width: 16
-        height: 16
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,8 +161,155 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 47581a79bd0586d40afd1fbb1d8a2720
-      internalID: -2077567066
+      spriteID: b385d07de7f01914d94ba440472e8316
+      internalID: -1273446492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flesh_Goo_Splat_Outline_3
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85bd52e47b1c6c74885bd52c34d1aca3
+      internalID: 330527948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flesh_Goo_Splat_Outline_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fbf6ad8b6b5c514aae96137fefd3083
+      internalID: -868959221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flesh_Goo_Splat_Outline_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c23175384647c7428909875f4f70183
+      internalID: -2129220184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flesh_Goo_Splat_Outline_6
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f7dd4fa92cdbba4fb2c432c88610571
+      internalID: 302605965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flesh_Goo_Splat_Outline_7
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e196a107d0d23a247a9b63b957c894db
+      internalID: -2122559875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flesh_Goo_Splat_Outline_8
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae33cc7e2f2a4a74091ce0c7fd7dc3be
+      internalID: 192528031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flesh_Goo_Splat_Outline_9
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fb28225b9463114d8852fb84811d702
+      internalID: 994234424
       vertices: []
       indices: 
       edges: []
@@ -232,11 +325,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Flesh_Goo_JUMP_EASE_IN_0: -1748296369
-      Flesh_Goo_JUMP_EASE_IN_1: 1835476197
-      Flesh_Goo_JUMP_EASE_IN_2: -1798059161
-      Flesh_Goo_JUMP_EASE_IN_3: -519779592
-      Flesh_Goo_JUMP_EASE_IN_4: -2077567066
+      Flesh_Goo_Splat_Outline_0: 51800294
+      Flesh_Goo_Splat_Outline_1: -665822667
+      Flesh_Goo_Splat_Outline_2: -1273446492
+      Flesh_Goo_Splat_Outline_3: 330527948
+      Flesh_Goo_Splat_Outline_4: -868959221
+      Flesh_Goo_Splat_Outline_5: -2129220184
+      Flesh_Goo_Splat_Outline_6: 302605965
+      Flesh_Goo_Splat_Outline_7: -2122559875
+      Flesh_Goo_Splat_Outline_8: 192528031
+      Flesh_Goo_Splat_Outline_9: 994234424
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

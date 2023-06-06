@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d653436908f85c34881ce3cb64d4b447
+guid: 4c17fdc688a3ce74d989ec1b0d3698f6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
@@ -101,29 +101,17 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Flesh_Goo_JUMP_EASE_OUT_0
+      name: Flesh_Goo_Falling_Outline(B)_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,62 +119,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dbf3fa3a3601ff7409d6cc16702b1989
-      internalID: -634563
+      spriteID: 3d0f6ba337467af4699f260338bad8ac
+      internalID: 1468172537
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flesh_Goo_JUMP_EASE_OUT_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ecf8e1e03d1e6404d9afb76261e5c6ac
-      internalID: -1529687462
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flesh_Goo_JUMP_EASE_OUT_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4eeb538b6a120c4409d3f709ddf40d87
-      internalID: -206816881
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flesh_Goo_JUMP_EASE_OUT_3
+      name: Flesh_Goo_Falling_Outline(B)_1
       rect:
         serializedVersion: 2
         x: 48
         y: 0
-        width: 16
-        height: 16
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,20 +140,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3196dd252f4d83942bccd05f1ec45d82
-      internalID: -848862154
+      spriteID: 5228fed3f76ccdd4fb288089e2c32e31
+      internalID: -1602958005
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flesh_Goo_JUMP_EASE_OUT_4
+      name: Flesh_Goo_Falling_Outline(B)_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 96
         y: 0
-        width: 16
-        height: 16
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,8 +161,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b65c83ed19d7703439ea82ccca3e770c
-      internalID: 1107997789
+      spriteID: f00154d25c2967a499883d5f3e47ea4b
+      internalID: -15279608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flesh_Goo_Falling_Outline(B)_3
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7b72148094b1ff4e9cd2b8d5903311d
+      internalID: -44380592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flesh_Goo_Falling_Outline(B)_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5421cbad5e95f224a89ff9290c03a5ea
+      internalID: 1167675974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flesh_Goo_Falling_Outline(B)_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5ca49b89ed5d724696817fba8f47f1b
+      internalID: 1239253444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flesh_Goo_Falling_Outline(B)_6
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d450bc3c4f51334f86bacfba7cc1f2a
+      internalID: 1327621508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flesh_Goo_Falling_Outline(B)_7
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a009b6af731ac8458c3859e4fcdce35
+      internalID: -774701491
       vertices: []
       indices: 
       edges: []
@@ -232,11 +283,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Flesh_Goo_JUMP_EASE_OUT_0: -634563
-      Flesh_Goo_JUMP_EASE_OUT_1: -1529687462
-      Flesh_Goo_JUMP_EASE_OUT_2: -206816881
-      Flesh_Goo_JUMP_EASE_OUT_3: -848862154
-      Flesh_Goo_JUMP_EASE_OUT_4: 1107997789
+      Flesh_Goo_Falling_Outline(B)_0: 1468172537
+      Flesh_Goo_Falling_Outline(B)_1: -1602958005
+      Flesh_Goo_Falling_Outline(B)_2: -15279608
+      Flesh_Goo_Falling_Outline(B)_3: -44380592
+      Flesh_Goo_Falling_Outline(B)_4: 1167675974
+      Flesh_Goo_Falling_Outline(B)_5: 1239253444
+      Flesh_Goo_Falling_Outline(B)_6: 1327621508
+      Flesh_Goo_Falling_Outline(B)_7: -774701491
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
