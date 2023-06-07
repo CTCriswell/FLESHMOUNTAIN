@@ -16,9 +16,8 @@ public class Enemy : Character
     {
         base.Start();
         hitbox = GetComponentsInChildren<BoxCollider2D>();// gets all of the hitbox children and puts in this array
-        collisionRadius=0.19f;
-        player = GameObject.FindWithTag("Player");
-        iFrameMax = 25;
+        collisionRadius=0.03f;
+        player = GameObject.Find("Player");
     }
 
     protected override void FixedUpdate()
@@ -42,7 +41,7 @@ public class Enemy : Character
         dmgObj.text = ""+dmg;
         int t = 150;
         while(t>0){
-            newSpawnTxt.transform.Translate(new Vector3(0.01f,0.01f,0f));
+            newSpawnTxt.transform.Translate(new Vector3(0.001f,0.001f,0f));
             t--;
             yield return null;
         }

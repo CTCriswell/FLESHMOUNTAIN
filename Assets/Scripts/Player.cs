@@ -9,12 +9,8 @@ public class Player : Character
     public float shotAirCarry = 0;
     //private float shotVelx, shotVely;
     public sbyte reloadDelay;
-    public byte attackDelay;
     public sbyte reloading;
-    public byte attacking;
-    public string currentWepaon;
-    public GameObject weapon_boomerang;
-    private Vector2 Recoil = new Vector2(25,42);
+    private Vector2 Recoil = new Vector2(2,6);
     private BoxCollider2D hurtbox;
     private PolygonCollider2D bc;
     //private BoxCollider2D bc;
@@ -23,9 +19,8 @@ public class Player : Character
     private byte jumpBuffer;
     private Vector2 shootAccel = new Vector2 (0,0);
     private IEnumerator JumpFunc, ShootFunc;
-    private int jumpAccel = 32;
+    private int jumpAccel = 5;
     private float inertia;
-    private BlastRendering br;
 
     private void OnDrawGizmos() {
         Gizmos.color = Color.yellow;
@@ -36,15 +31,11 @@ public class Player : Character
 
     protected override void Start()
     {
-        iFrameMax = 50;
         health = maxHealth;
         sr = GetComponent<SpriteRenderer>();
         bc = GetComponent<PolygonCollider2D>();
         rb = GetComponent<Rigidbody2D>();
-        spawner = GetComponentInParent<Spawner>();
-        br = GetComponentInChildren<BlastRendering>();
         sr.sprite = sprite_main;
-        transform.position = spawner.transform.position;
 
         isDead = false;
         hurtbox = transform.Find("PlayerHurtBox").GetComponent<BoxCollider2D>();
@@ -54,19 +45,16 @@ public class Player : Character
 
         reloading = 0;
         reloadDelay = 16;
-        attackDelay = 5;
-        attacking = 0;
-        currentWepaon = "default";
 
-        collisionRadius = 0.32f;
-        friction = 2.5f;
+        collisionRadius = 0.05f;
+        friction = 0.4f;
         inertia = 0;
     }
 
     protected override void Update()
     {
-        if(Move < 0) isRight = true;// sprite png imported is facing left
-        if(Move > 0) isRight = false;
+        if(Move > 0) isRight = true;
+        if(Move < 0) isRight = false;
 
         if(isRight){sr.flipX = false;}
         else sr.flipX = true;
@@ -76,32 +64,20 @@ public class Player : Character
             
             Move = (sbyte) Input.GetAxisRaw("Horizontal"); // Inputs
             Vert = (sbyte) Input.GetAxisRaw("Vertical");
-            
 
             if(Input.GetButtonDown("Jump")){
                 //JumpFunc.Reset();
                 StartCoroutine(JumpFunc_CR());
             }
             if(Input.GetButtonDown("Fire1") && reloading == 0){
-                getShotDir();
+                shotDir = new Vector2(Move,Vert);
                 StartCoroutine(ShootFunc_CR());
-            }
-            if(Input.GetButtonDown("Fire2") && attacking == 0){
-                getShotDir();
-                StartCoroutine(Attack_CR());
             }
         } else {
             Velocity = new Vector2 (0,0);
             if(Input.GetButtonDown("Fire1")){
                 Respawn();
             }
-        }
-    }
-    protected void getShotDir(){
-        shotDir = new Vector2(Move,Vert);
-        if(shotDir.x == 0 && shotDir.y == 0){// shoot where character is facing if no input
-            if(!isRight){shotDir.x = 1;}
-            else{shotDir.x = -1;}
         }
     }
     protected override void FixedUpdate()
@@ -120,8 +96,8 @@ public class Player : Character
         //    vvv           how much faster than topSpeed/2         Reduce      Extract velocity.x sign
             Velocity.x -= (System.Math.Abs(Velocity.x)-topSpeed/2) *0.025f* (Velocity.x/System.Math.Abs(Velocity.x));
         }
-        if(rb.velocity.y+Velocity.y > 50){
-            rb.velocity = new Vector2(Velocity.x,50);
+        if(rb.velocity.y+Velocity.y > 8){
+            rb.velocity = new Vector2(Velocity.x,8);
         } else {
             rb.velocity = new Vector2(Velocity.x,rb.velocity.y + Velocity.y);
         }
@@ -130,7 +106,7 @@ public class Player : Character
     protected override void MoveFunc(){
         if(InAir && Move == 0){runAccel = 0;}
         else {
-            runAccel = Move*inertia*1.25f;
+            runAccel = Move*inertia*0.2f;
             if(inertia < 1) {inertia += 0.1f;}
         }
 
@@ -162,34 +138,20 @@ public class Player : Character
             Velocity.y -= jumpAccel;
         }
 
-        rb.gravityScale=10f;
+        rb.gravityScale=1.5f;
         while(Input.GetButton("Jump") && rb.velocity.y > 1){// hold space bar to increase jump height
             yield return new WaitForFixedUpdate();
         }
-        rb.gravityScale = 20;
-    }
-
-    private IEnumerator Attack_CR(){
-        switch (currentWepaon){
-            case "Boomerang":
-                Debug.Log("shooting boomerang");
-                attacking = 1;
-                Instantiate(weapon_boomerang);
-                yield return new WaitForSeconds(1);
-                attacking = 0;
-                break;
-            default:
-                attacking = attackDelay;
-                yield return new WaitForSeconds(0.1f);
-                attacking = 0;
-                break;
-        }
-        yield return null;
+        rb.gravityScale = 3;
     }
 
     private IEnumerator ShootFunc_CR(){
         reloading = reloadDelay;
-        rb.gravityScale = 20;
+        rb.gravityScale = 3;
+        if(shotDir.x == 0 && shotDir.y == 0){// shoot where character is facing if no input
+            if(isRight){shotDir.x = 1;}
+            else{shotDir.x = -1;}
+        }
         // one frame y shot boost
         shootAccel.y = -shotDir.y*Recoil.y;
 
@@ -204,7 +166,7 @@ public class Player : Character
         // yield return new WaitForFixedUpdate();
         // Velocity.y -= shootAccel.y;
 
-        Velocity.x += -Recoil.x*shotDir.x;
+        Velocity.x += -Recoil.x*shotDir.x*2;
 
         // if(InAir){ // allows to quickly change horizontal direction unless going too fast
         //     if(System.Math.Abs(shotAirCarry) <= 2 && System.Math.Abs(shotAirCarry)/shotAirCarry + shotDir.x == 0){
@@ -223,7 +185,6 @@ public class Player : Character
         //     reloading --;
         //     yield return new WaitForFixedUpdate();
         // }
-        StartCoroutine(br.Shoot_CR());
         while(reloading > 0){
             reloading --;
             yield return new WaitForFixedUpdate();
@@ -231,9 +192,9 @@ public class Player : Character
     }
 
     private void CollisionUpdate(){
-        collisionBottom = new Vector2(bc.transform.position.x,bc.transform.position.y-1.62f/2);
-        collisionRight = new Vector2(bc.transform.position.x+0.4f,bc.transform.position.y);
-        collisionLeft = new Vector2(bc.transform.position.x-0.4f,bc.transform.position.y);
+        collisionBottom = new Vector2(bc.transform.position.x,bc.transform.position.y-0.26f/2);
+        collisionRight = new Vector2(bc.transform.position.x+0.08f,bc.transform.position.y);
+        collisionLeft = new Vector2(bc.transform.position.x-0.08f,bc.transform.position.y);
 
         collidersBottom = Physics2D.OverlapCircleAll(collisionBottom,collisionRadius,groundLayer);
         collidersLeft = Physics2D.OverlapCircleAll(collisionLeft,collisionRadius,groundLayer);

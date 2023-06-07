@@ -1,5 +1,5 @@
 using System.Collections;
-//using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Hedgehog : Enemy
@@ -9,7 +9,7 @@ public class Hedgehog : Enemy
     {
         maxHealth = 10;
         base.Start();
-        runAccel = 1.2f;
+        runAccel = 0.2f;
         //meleeDamage = 3;
         StartCoroutine(Idle_CR());
         play = player.GetComponent<Player>();
@@ -19,13 +19,13 @@ public class Hedgehog : Enemy
         Gizmos.DrawWireSphere(collisionBottom,collisionRadius);
     }
     private IEnumerator Idle_CR(){
-        topSpeed = 3;
+        topSpeed = 0.5f;
         while(!isDead){
             Move = (sbyte) Random.Range(-2,2);
 
             for(int i = 0; i<50; i++){
                 yield return new WaitForFixedUpdate();
-                if(System.Math.Abs(playerxDis) < 12){
+                if(System.Math.Abs(playerxDis) < 2){
                     yield return StartCoroutine(AttackPlayer_CR());
                 }
             }
@@ -34,7 +34,7 @@ public class Hedgehog : Enemy
 
             for(int i = 0; i<100; i++){
                 yield return new WaitForFixedUpdate();
-                if(System.Math.Abs(playerxDis) < 12){
+                if(System.Math.Abs(playerxDis) < 2){
                     yield return StartCoroutine(AttackPlayer_CR());
                 }
             }
@@ -44,30 +44,30 @@ public class Hedgehog : Enemy
     private void Shoot(){
         GameObject Proj = Instantiate(projectileHedgehog,transform.position,Quaternion.identity);
         EnemyProjectile ep = Proj.GetComponent<EnemyProjectile>();
-        ep.velocity = new Vector2(22*playerxDis/System.Math.Abs(playerxDis),20);
+        ep.velocity = new Vector2(3.5f*playerxDis/System.Math.Abs(playerxDis),3f);
         Destroy(Proj,15);
     }
 
     private IEnumerator AttackPlayer_CR(){
-        topSpeed = 14f;
+        topSpeed = 2.2f;
         while(!isDead){
             Move = (sbyte)(-(playerxDis/System.Math.Abs(playerxDis)));
-            if(System.Math.Abs(playerxDis)>12){
+            if(System.Math.Abs(playerxDis)>2){
                 Move = 0;
                 yield return new WaitForSeconds(0.15f);
                 if(playerxDis/System.Math.Abs(playerxDis) == 1){
-                    isRight = false;
-                } else {
                     isRight = true;
+                } else {
+                    isRight = false;
                 }
-                while(System.Math.Abs(playerxDis)>12 && System.Math.Abs(playerxDis)<22){
+                while(System.Math.Abs(playerxDis)>2 && System.Math.Abs(playerxDis)<3.5f){
                     Shoot();
                     yield return new WaitForSeconds(0.75f);
                 }
             }
             yield return new WaitForFixedUpdate();
-            if(System.Math.Abs(playerxDis)>=22){
-                topSpeed = 3;
+            if(System.Math.Abs(playerxDis)>=3.5f){
+                topSpeed = 0.5f;
                 break;
             }
             // Move = 0;
