@@ -8,7 +8,7 @@ public class Fledgling : Enemy
         maxHealth = 5;
         base.Start();
         runAccel = 0;
-        topSpeed = 2;
+        topSpeed = 12;
         //meleeDamage = 3;
         StartCoroutine(Jumping_CR());
         play = player.GetComponent<Player>();
@@ -29,9 +29,9 @@ public class Fledgling : Enemy
         while(true){
             if(isDead){break;}
             if(System.Math.Abs(playerxDis) < 2){
-                hop(playerIsRight,1.25f);
+                hop(playerIsRight,8);
             } else {
-                hop(playerIsRight,1);
+                hop(playerIsRight,7);
             }
             yield return new WaitForSeconds(2);
         }

@@ -14,6 +14,7 @@ public class NormalUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        target = GameObject.FindWithTag("Player");
         healthNum = GetComponentsInChildren<TMP_Text>();
         p = target.GetComponent<Player>();
     }

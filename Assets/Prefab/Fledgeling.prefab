@@ -46,7 +46,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.01837987, y: 0.0018292256}
+  m_Offset: {x: -0.03185457, y: -0.15558515}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -57,7 +57,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.19295734, y: 0.09951345}
+  m_Size: {x: 0.97087455, y: 0.6231233}
   m_EdgeRadius: 0
 --- !u!114 &3645432412678177787
 MonoBehaviour:
@@ -174,8 +174,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.005, y: -0.03}
-  m_Size: {x: 0.09, y: 0.1}
+  m_Offset: {x: -0.03244731, y: -0.18886155}
+  m_Size: {x: 0.5587007, y: 0.6352204}
   m_Direction: 0
 --- !u!50 &3645432413484519018
 Rigidbody2D:
@@ -192,7 +192,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 6
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -218,7 +218,7 @@ MonoBehaviour:
   iFrames: 0
   sprite_main: {fileID: 21300000, guid: 07a5e60d6b9aada4e97b61044e586eb3, type: 3}
   sprite_dead: {fileID: 21300000, guid: 41cdae52c93bbd44392440b88eb98a8e, type: 3}
-  spawner: {fileID: 0}
+  spawner: {fileID: 8757457517096921456, guid: 6f8d068d30f2a3f49b09da05f85d0622, type: 3}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
