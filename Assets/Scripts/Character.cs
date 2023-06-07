@@ -21,11 +21,12 @@ public class Character : MonoBehaviour
     protected SpriteRenderer sr;
     protected CapsuleCollider2D cc;
     protected Rigidbody2D rb;
-    public Spawner spawner;
+    protected Spawner spawner;
     public LayerMask groundLayer;
     protected Vector2 collisionBottom, collisionLeft, collisionRight;
     protected Collider2D[] collidersBottom, collidersLeft, collidersRight;
     protected float collisionRadius;
+    protected byte iFrameMax;
 
     protected virtual void Start()
     {
@@ -34,16 +35,18 @@ public class Character : MonoBehaviour
         cc = GetComponent<CapsuleCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         TryGetComponent<Animator>(out ani);
+        spawner = GetComponentInParent<Spawner>();
+        transform.position = spawner.transform.position;
         sr.sprite = sprite_main;
         Move = 0;
-        friction = 0.3f;
+        friction = 1.9f;
 
         isDead = false;
     }
 
     protected virtual void Update() { // checks wether to flip sprite, assuming sprite is facing right
-        if(Velocity.x > 0) isRight = true;
-        if(Velocity.x < 0) isRight = false;
+        if(Velocity.x < 0) isRight = true;// sprite png is imported facing left
+        if(Velocity.x > 0) isRight = false;
 
         if(isRight){sr.flipX = false;}
         else sr.flipX = true;
@@ -115,9 +118,15 @@ public class Character : MonoBehaviour
         return isDead;
     }
 
+    /*
+    |   ---=---BUG--------
+    |   hudgehog gets assblasted when the boomerang floats ontops, applies damage 
+    |   when it shouldnt. has to do with iframes i think
+    |
+    */
     protected IEnumerator Invincible(){
         sr.color = new Color(1,1,1,0.66f); // becomes slightly transparent when damaged
-        iFrames = 50;
+        iFrames = iFrameMax;
         while(iFrames>0){
             iFrames--; // iFrame -= 1
             yield return new WaitForFixedUpdate();
