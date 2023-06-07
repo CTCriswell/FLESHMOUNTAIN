@@ -155,7 +155,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.84, y: 3.84}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -218,7 +218,6 @@ MonoBehaviour:
   iFrames: 0
   sprite_main: {fileID: 21300000, guid: 07a5e60d6b9aada4e97b61044e586eb3, type: 3}
   sprite_dead: {fileID: 21300000, guid: 41cdae52c93bbd44392440b88eb98a8e, type: 3}
-  spawner: {fileID: 8757457517096921456, guid: 6f8d068d30f2a3f49b09da05f85d0622, type: 3}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
