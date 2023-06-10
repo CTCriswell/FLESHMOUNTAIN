@@ -21,7 +21,7 @@ public class Hedgehog : Enemy
     private IEnumerator Idle_CR(){
         topSpeed = 3;
         while(!isDead){
-            Move = (sbyte) Random.Range(-2,2);
+            Move.x = (sbyte) Random.Range(-2,2);
 
             for(int i = 0; i<50; i++){
                 yield return new WaitForFixedUpdate();
@@ -30,7 +30,7 @@ public class Hedgehog : Enemy
                 }
             }
 
-            Move = (sbyte) 0;
+            Move.x = (sbyte) 0;
 
             for(int i = 0; i<100; i++){
                 yield return new WaitForFixedUpdate();
@@ -51,9 +51,9 @@ public class Hedgehog : Enemy
     private IEnumerator AttackPlayer_CR(){
         topSpeed = 14f;
         while(!isDead){
-            Move = (sbyte)(-(playerxDis/System.Math.Abs(playerxDis)));
+            Move.x = (sbyte)(-(playerxDis/System.Math.Abs(playerxDis)));
             if(System.Math.Abs(playerxDis)>12){
-                Move = 0;
+                Move.x = 0;
                 yield return new WaitForSeconds(0.15f);
                 if(playerxDis/System.Math.Abs(playerxDis) == 1){
                     isRight = false;

@@ -1469,7 +1469,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 456e1c9849884e045aec207c5ab54aad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1618840639}
   damage: 0
   angle: 0
 --- !u!61 &499875936

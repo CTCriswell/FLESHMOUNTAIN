@@ -10,7 +10,7 @@ public class Character : MonoBehaviour
     protected bool isDead;
     public bool isRight;
     public bool InAir;
-    protected sbyte Move;
+    public Vector2 Move;
     protected float friction;
     public Vector2 Velocity = new Vector2(0,0);
     protected float runAccel = 0;
@@ -38,7 +38,7 @@ public class Character : MonoBehaviour
         spawner = GetComponentInParent<Spawner>();
         transform.position = spawner.transform.position;
         sr.sprite = sprite_main;
-        Move = 0;
+        Move = new Vector2(0,0);
         friction = 1.9f;
 
         isDead = false;
@@ -67,12 +67,12 @@ public class Character : MonoBehaviour
     }
 
     protected virtual void MoveFunc(){
-        Velocity.x += Move*runAccel;
+        Velocity.x += Move.x*runAccel;
 
         if(System.Math.Abs(Velocity.x) >= topSpeed){
             Velocity.x = topSpeed * Velocity.x/System.Math.Abs(Velocity.x);
         }
-        if(Move == 0 && !InAir && System.Math.Abs(Velocity.x)!=0){ // running friction
+        if(Move.x == 0 && !InAir && System.Math.Abs(Velocity.x)!=0){ // running friction
             //Debug.Log("Slowing Down");
             Velocity.x -= friction*Velocity.x/System.Math.Abs(Velocity.x);
             if(System.Math.Abs(Velocity.x)<=friction){

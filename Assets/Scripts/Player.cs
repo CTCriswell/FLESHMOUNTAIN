@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : Character
 {
-    private sbyte Vert;
     public Vector2 shotDir = new Vector2(1,1);
     public float shotAirCarry = 0;
     //private float shotVelx, shotVely;
@@ -17,6 +17,7 @@ public class Player : Character
     private Vector2 Recoil = new Vector2(25,42);
     private BoxCollider2D hurtbox;
     private PolygonCollider2D bc;
+    private InputMaster inputs;
     //private BoxCollider2D bc;
     //private float collisionRadius = 0.15f;
     private int jumpVel;
@@ -26,6 +27,8 @@ public class Player : Character
     private int jumpAccel = 32;
     private float inertia;
     private BlastRendering br;
+    public Vector2 Aim;
+    private bool jump;
 
     private void OnDrawGizmos() {
         Gizmos.color = Color.yellow;
@@ -65,40 +68,46 @@ public class Player : Character
 
     protected override void Update()
     {
-        if(Move < 0) isRight = true;// sprite png imported is facing left
-        if(Move > 0) isRight = false;
+
+        //var gamepad = Gamepad.current;
+
+        if(Move.x < 0) isRight = true;// sprite png imported is facing left
+        if(Move.x > 0) isRight = false;
 
         if(isRight){sr.flipX = false;}
         else sr.flipX = true;
 
+        //Aim = gamepad.rightStick.ReadValue();
+        
+
         if(!isDead){
             CollisionUpdate();
             
-            Move = (sbyte) Input.GetAxisRaw("Horizontal"); // Inputs
-            Vert = (sbyte) Input.GetAxisRaw("Vertical");
+            //Move = (sbyte) Input.GetAxisRaw("Horizontal"); // Inputs
+            //Vert = (sbyte) Input.GetAxisRaw("Vertical");
             
 
-            if(Input.GetButtonDown("Jump")){
-                //JumpFunc.Reset();
-                StartCoroutine(JumpFunc_CR());
-            }
-            if(Input.GetButtonDown("Fire1") && reloading == 0){
-                getShotDir();
-                StartCoroutine(ShootFunc_CR());
-            }
-            if(Input.GetButtonDown("Fire2") && attacking == 0){
-                getShotDir();
-                StartCoroutine(Attack_CR());
-            }
+            // if(Input.GetButtonDown("Jump")){
+            //     //JumpFunc.Reset();
+            //     StartCoroutine(JumpFunc_CR());
+            // }
+            // if(Input.GetButtonDown("Fire1") && reloading == 0){
+            //     getShotDir();
+            //     StartCoroutine(ShootFunc_CR());
+            // }
+            // if(Input.GetButtonDown("Fire2") && attacking == 0){
+            //     getShotDir();
+            //     StartCoroutine(Attack_CR());
+            // }
         } else {
             Velocity = new Vector2 (0,0);
-            if(Input.GetButtonDown("Fire1")){
-                Respawn();
-            }
+            // if(Input.GetButtonDown("Fire1")){
+            //     Respawn();
+            // }
         }
     }
     protected void getShotDir(){
-        shotDir = new Vector2(Move,Vert);
+        shotDir = new Vector2(Aim.x,Aim.y);
         if(shotDir.x == 0 && shotDir.y == 0){// shoot where character is facing if no input
             if(!isRight){shotDir.x = 1;}
             else{shotDir.x = -1;}
@@ -108,7 +117,7 @@ public class Player : Character
     {
         if(!isDead){
             MoveFunc();
-            if(System.Math.Abs(Velocity.x) < friction && Move == 0){ // stops you if slow enough
+            if(System.Math.Abs(Velocity.x) < friction && Move.x == 0){ // stops you if slow enough
                 Velocity.x = 0;
                 runAccel = 0;
             }
@@ -128,9 +137,9 @@ public class Player : Character
         
     }
     protected override void MoveFunc(){
-        if(InAir && Move == 0){runAccel = 0;}
+        if(InAir && System.Math.Abs(Move.x) <= 0.1){runAccel = 0;}
         else {
-            runAccel = Move*inertia*1.25f;
+            runAccel = Move.x*inertia*1.25f;
             if(inertia < 1) {inertia += 0.1f;}
         }
 
@@ -138,7 +147,7 @@ public class Player : Character
             runAccel = 0;
         }
 
-        if(Move == 0 && !InAir && System.Math.Abs(Velocity.x)!=0){ // running friction
+        if(Move.x == 0 && !InAir && System.Math.Abs(Velocity.x)!=0){ // running friction
             Velocity.x -= friction*Velocity.x/System.Math.Abs(Velocity.x);
         }
 
@@ -163,7 +172,7 @@ public class Player : Character
         }
 
         rb.gravityScale=10f;
-        while(Input.GetButton("Jump") && rb.velocity.y > 1){// hold space bar to increase jump height
+        while(jump && rb.velocity.y > 1){// hold space bar to increase jump height
             yield return new WaitForFixedUpdate();
         }
         rb.gravityScale = 20;
@@ -257,6 +266,39 @@ public class Player : Character
                 runAccel = 0;
                 //Debug.Log(collidersRight[0].gameObject.name);
             }
+        }
+    }
+
+    public void OnAim(InputValue value){
+        if(!isDead) {
+            Aim = value.Get<Vector2>();
+        }
+    }
+    public void OnMove(InputValue value){
+        if(!isDead) {
+            Move = value.Get<Vector2>();
+        }
+    }
+    public void OnShoot(InputValue value){
+        if(reloading == 0 && !isDead){
+            getShotDir();
+            StartCoroutine(ShootFunc_CR());
+        }
+
+        if(isDead){
+            Respawn();
+        }
+    }
+    public void OnJump(InputValue value){
+        jump = value.isPressed;
+        if(jump && !isDead){
+            StartCoroutine(JumpFunc_CR());
+        }
+    }
+    public void OnAttack(InputValue value){
+        if(attacking == 0 && !isDead){
+            getShotDir();
+            StartCoroutine(Attack_CR());
         }
     }
 }
