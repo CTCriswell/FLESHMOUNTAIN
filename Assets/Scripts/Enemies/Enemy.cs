@@ -12,13 +12,17 @@ public class Enemy : Character
     protected Player play;
     protected bool playerIsRight;
     protected float playerxDis;
+    public bool turning;
     protected override void Start()
+    
     {
         base.Start();
         hitbox = GetComponentsInChildren<BoxCollider2D>();// gets all of the hitbox children and puts in this array
         collisionRadius=0.19f;
         player = GameObject.FindWithTag("Player");
         iFrameMax = 25;
+        play = player.GetComponent<Player>();
+        turning = false;
     }
 
     protected override void FixedUpdate()
