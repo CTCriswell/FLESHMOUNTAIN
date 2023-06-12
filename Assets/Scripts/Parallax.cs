@@ -13,19 +13,27 @@ public class Parallax : MonoBehaviour
     {
         startPos = transform.position;
         len = GetComponent<SpriteRenderer>().bounds.size.x;
+        StartCoroutine(getPos_CR());
     }
 
     void Update()
     {
-        temp = cam.transform.position.x * (1-parallaxEff.x);
+        
+    }
 
-        distance = new Vector2 (cam.transform.position.x * parallaxEff.x, cam.transform.position.y * parallaxEff.y);
-        transform.position = startPos + distance;
+    private IEnumerator getPos_CR(){
+        while(true){
+            temp = cam.transform.position.x * (1-parallaxEff.x);
 
-        if(temp > startPos.x + 1.5*len){
-            startPos.x += 3*len;
-        } else if (temp < startPos.x - 1.5*len){
-            startPos.x -= 3*len;
+            distance = new Vector2 (cam.transform.position.x * parallaxEff.x, cam.transform.position.y * parallaxEff.y);
+            transform.position = startPos + distance;
+
+            if(temp > startPos.x + 1.5*len){
+                startPos.x += 3*len;
+            } else if (temp < startPos.x - 1.5*len){
+                startPos.x -= 3*len;
+            }
+            yield return null;
         }
     }
 }
