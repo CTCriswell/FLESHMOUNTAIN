@@ -28,6 +28,13 @@ public class Character : MonoBehaviour
     protected float collisionRadius;
     protected byte iFrameMax;
 
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(collisionBottom,collisionRadius);
+        Gizmos.DrawWireSphere(collisionLeft,collisionRadius);
+        Gizmos.DrawWireSphere(collisionRight,collisionRadius);
+    }
+
     protected virtual void Start()
     {
         health = maxHealth;
@@ -36,7 +43,9 @@ public class Character : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         TryGetComponent<Animator>(out ani);
         spawner = GetComponentInParent<Spawner>();
-        transform.position = spawner.transform.position;
+        if(spawner != null){
+            transform.position = spawner.transform.position;
+        }
         sr.sprite = sprite_main;
         Move = new Vector2(0,0);
         friction = 1.9f;
@@ -54,12 +63,13 @@ public class Character : MonoBehaviour
     }
 
     protected virtual void FixedUpdate() {
+        if(ani != null){
+            ani.SetFloat("Velocity.y",rb.velocity.y);
+            ani.SetBool("inAir",InAir);
+            ani.SetBool("isDead",isDead);
+        }
         if(!isDead){
             MoveFunc();
-            if(ani != null){
-                ani.SetFloat("Velocity.y",rb.velocity.y);
-                ani.SetBool("inAir",InAir);
-            }
             
         } else {
             Velocity = new Vector2(0,0);
@@ -135,10 +145,27 @@ public class Character : MonoBehaviour
     }
     protected void collisionUpdate(){
         collisionBottom = new Vector2(cc.transform.position.x,cc.transform.position.y-(cc.size.y/2)*transform.localScale.y+cc.offset.y);
+        collisionRight = new Vector2(cc.transform.position.x+(cc.size.x/2)*transform.localScale.x+cc.offset.x,cc.transform.position.y+cc.offset.y);
+        collisionLeft = new Vector2(cc.transform.position.x-(cc.size.x/2)*transform.localScale.x+cc.offset.x,cc.transform.position.y+cc.offset.y);
+
         collidersBottom = Physics2D.OverlapCircleAll(collisionBottom,collisionRadius,groundLayer);
+        collidersLeft = Physics2D.OverlapCircleAll(collisionLeft,collisionRadius,groundLayer);
+        collidersRight = Physics2D.OverlapCircleAll(collisionRight,collisionRadius,groundLayer);
+
         if(collidersBottom.Length > 0){
             InAir = false;
         }
         else {InAir = true;}
+
+        if(collidersLeft.Length > 0 || collidersRight.Length > 0){
+            if(collidersLeft.Length > 0 && Velocity.x < 0){
+                Velocity.x = 0;
+                //Debug.Log(collidersLeft[0].gameObject.name);
+            }
+            if(collidersRight.Length > 0 && Velocity.x > 0){
+                Velocity.x = 0;
+                //Debug.Log(collidersRight[0].gameObject.name);
+            }
+        }
     }
 }

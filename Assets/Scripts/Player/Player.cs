@@ -30,13 +30,6 @@ public class Player : Character
     public Vector2 Aim;
     private bool jump;
 
-    private void OnDrawGizmos() {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(collisionBottom,collisionRadius);
-        Gizmos.DrawWireSphere(collisionLeft,collisionRadius);
-        Gizmos.DrawWireSphere(collisionRight,collisionRadius);
-    }
-
     protected override void Start()
     {
         iFrameMax = 50;
@@ -127,7 +120,7 @@ public class Player : Character
         if(!InAir && System.Math.Abs(Velocity.x) > topSpeed){// non running friction
 
         //    vvv           how much faster than topSpeed/2         Reduce      Extract velocity.x sign
-            Velocity.x -= (System.Math.Abs(Velocity.x)-topSpeed/2) *0.025f* (Velocity.x/System.Math.Abs(Velocity.x));
+            Velocity.x -= (System.Math.Abs(Velocity.x)-topSpeed/2) *(friction/20)* (Velocity.x/System.Math.Abs(Velocity.x));
         }
         if(rb.velocity.y+Velocity.y > 50){
             rb.velocity = new Vector2(Velocity.x,50);
@@ -181,7 +174,6 @@ public class Player : Character
     private IEnumerator Attack_CR(){
         switch (currentWepaon){
             case "Boomerang":
-                Debug.Log("shooting boomerang");
                 attacking = 1;
                 Instantiate(weapon_boomerang);
                 yield return new WaitForSeconds(1);

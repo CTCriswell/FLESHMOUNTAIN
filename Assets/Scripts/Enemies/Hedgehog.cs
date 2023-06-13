@@ -14,14 +14,10 @@ public class Hedgehog : Enemy
         StartCoroutine(Idle_CR());
         play = player.GetComponent<Player>();
     }
-    private void OnDrawGizmos() {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(collisionBottom,collisionRadius);
-    }
     private IEnumerator Idle_CR(){
         topSpeed = 3;
         while(!isDead){
-            Move.x = (sbyte) Random.Range(-2,2);
+            Move.x = (sbyte) Random.Range(-1,2);
 
             for(int i = 0; i<50; i++){
                 yield return new WaitForFixedUpdate();
@@ -44,7 +40,7 @@ public class Hedgehog : Enemy
     private void Shoot(){
         GameObject Proj = Instantiate(projectileHedgehog,transform.position,Quaternion.identity);
         EnemyProjectile ep = Proj.GetComponent<EnemyProjectile>();
-        ep.velocity = new Vector2(22*playerxDis/System.Math.Abs(playerxDis),20);
+        ep.velocity = new Vector2((22f+Random.Range(-1f,1f))*playerxDis/System.Math.Abs(playerxDis),20);
         Destroy(Proj,15);
     }
 
