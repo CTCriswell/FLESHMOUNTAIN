@@ -9,7 +9,7 @@ public class Bird : Enemy
     // Start is called before the first frame update
     protected override void Start()
     {
-        maxHealth = 2;
+        maxHealth = 200;
         base.Start();
         runAccel = 1;
         topSpeed = 15;

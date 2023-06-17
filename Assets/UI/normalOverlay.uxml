@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="screen" style="height: 100%; flex-direction: row; align-items: flex-start; width: auto; flex-wrap: nowrap; position: relative; justify-content: space-between;">
+        <ui:VisualElement name="Health" style="height: 142px; width: 413px; background-color: rgba(128, 0, 0, 0.66); flex-direction: row; align-items: center; justify-content: center; transform-origin: center; translate: 30px 30px; -unity-background-image-tint-color: rgb(255, 255, 255); opacity: 1; display: flex; visibility: visible;">
+            <ui:Label text="Health:" display-tooltip-when-elided="true" name="healthtext" style="height: 76px; -unity-font-style: normal; font-size: 60px; width: 216px; -unity-text-align: middle-left; align-items: flex-start; justify-content: flex-start; background-color: rgba(0, 0, 0, 0); color: rgb(255, 255, 255); scale: 1 0.6; -unity-text-outline-width: 1px; -unity-text-outline-color: rgb(0, 0, 0);" />
+            <ui:Label text="33" display-tooltip-when-elided="true" name="healthNumber" style="height: 127px; width: 158px; font-size: 120px; -unity-font-style: bold; -unity-text-align: middle-center; color: rgb(255, 255, 255); -unity-text-outline-width: 3px; -unity-text-outline-color: rgb(0, 0, 0);" />
+        </ui:VisualElement>
+        <ui:VisualElement name="PauseBar" style="height: 256px; width: 718px; translate: 0 0; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 3%; padding-right: 3%; padding-top: 3%; padding-bottom: 3%; flex-direction: row; align-items: center; justify-content: space-between; background-color: rgb(0, 0, 0); position: relative; left: auto; top: 30%; right: 30%;">
+            <ui:IMGUIContainer style="height: 125px; width: 125px; background-color: rgb(255, 255, 255);" />
+            <ui:IMGUIContainer style="height: 125px; width: 125px; background-color: rgb(255, 255, 255);" />
+            <ui:IMGUIContainer style="height: 125px; width: 125px; background-color: rgb(255, 255, 255);" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

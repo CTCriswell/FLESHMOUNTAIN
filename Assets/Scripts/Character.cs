@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    private Animator ani;
+    protected Animator ani;
     protected int health;
     public int maxHealth;
     protected bool isDead;
@@ -49,7 +49,6 @@ public class Character : MonoBehaviour
         sr.sprite = sprite_main;
         Move = new Vector2(0,0);
         friction = 1.9f;
-
         isDead = false;
     }
 
@@ -70,7 +69,6 @@ public class Character : MonoBehaviour
         }
         if(!isDead){
             MoveFunc();
-            
         } else {
             Velocity = new Vector2(0,0);
         }
@@ -96,6 +94,7 @@ public class Character : MonoBehaviour
     public void Respawn(){
         isDead = false;
         transform.position = spawner.transform.position;
+        Move = new Vector2 (0,0);
         Velocity = new Vector2 (0,0);
         runAccel = 0;
         sr.sprite = sprite_main;
@@ -129,17 +128,21 @@ public class Character : MonoBehaviour
     }
 
     /*
-    |   ---=---BUG--------
-    |   hudgehog gets assblasted when the boomerang floats ontops, applies damage 
-    |   when it shouldnt. has to do with iframes i think
-    |
+    |   FIXED: 6/16/23
+    |   Moved WaitForFixedUpdate() to occur before iFrames--. Problem is iFrames would hang on zero
+    |   until the next fixed update frame, and OnTriggerStay() happens more frequently than fixed update,
+    |   allowing damage to be taken again while Invincible() is still running.
+    |   
+    |   ------BUG--------
+    |   hudgehog gets assblasted when the boomerang floats ontops, applies damage more offten 
+    |   than it should. has to do with iframes i think
     */
     protected IEnumerator Invincible(){
         sr.color = new Color(1,1,1,0.66f); // becomes slightly transparent when damaged
         iFrames = iFrameMax;
         while(iFrames>0){
-            iFrames--; // iFrame -= 1
             yield return new WaitForFixedUpdate();
+            iFrames--; // iFrame -= 1
         }
         sr.color = new Color(1,1,1,1);
     }
@@ -159,11 +162,11 @@ public class Character : MonoBehaviour
 
         if(collidersLeft.Length > 0 || collidersRight.Length > 0){
             if(collidersLeft.Length > 0 && Velocity.x < 0){
-                Velocity.x = 0;
+                rb.velocity = new Vector2(0,rb.velocity.y);
                 //Debug.Log(collidersLeft[0].gameObject.name);
             }
             if(collidersRight.Length > 0 && Velocity.x > 0){
-                Velocity.x = 0;
+                rb.velocity = new Vector2(0,rb.velocity.y);
                 //Debug.Log(collidersRight[0].gameObject.name);
             }
         }

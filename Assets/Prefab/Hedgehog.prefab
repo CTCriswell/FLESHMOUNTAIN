@@ -175,17 +175,18 @@ MonoBehaviour:
   maxHealth: 0
   isRight: 0
   InAir: 0
+  Move: {x: 0, y: 0}
   Velocity: {x: 0, y: 0}
   topSpeed: 0
   iFrames: 0
   sprite_main: {fileID: 21300000, guid: 28a7ea258234c214390196a214ecf392, type: 3}
   sprite_dead: {fileID: 21300000, guid: bae0c3f3980715848b1b0266d522dcfb, type: 3}
-  spawner: {fileID: 8757457517096921456, guid: 7e53e7de9649c5e4cbff9ec8b244addc, type: 3}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   DmgText: {fileID: 5088843594966138845, guid: ee9a67b188d3671448c63ed9b851e0e6, type: 3}
   player: {fileID: 0}
+  turning: 0
   projectileHedgehog: {fileID: 8029863713483502368, guid: 4daeaf3490b42e24bb150d49707a806e, type: 3}
 --- !u!70 &7233137189131432076
 CapsuleCollider2D:
@@ -219,7 +220,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 6
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 878d161c32395564b80e80c15e692386, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

@@ -25,7 +25,7 @@ public abstract class Weapon : MonoBehaviour
 
     protected virtual void hitCheck(Collider2D other){
         Enemy E = other.gameObject.GetComponentInParent<Enemy>();
-        if(E != null && !E.getDead()){
+        if(E != null && !E.getDead() && E.iFrames == 0){
             E.takeDamage(damage);
         }
     }
