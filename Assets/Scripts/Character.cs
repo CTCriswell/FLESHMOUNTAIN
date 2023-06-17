@@ -108,6 +108,7 @@ public class Character : MonoBehaviour
                 isDead = true;
                 health = 0;
                 sr.sprite = sprite_dead;
+                Move= new Vector2(0,0);
             } else {
                 StartCoroutine(Invincible());
             }

@@ -6,6 +6,7 @@ public class RolyPoly : Enemy
 {
     private bool bonked;
     private bool attacking;
+    private bool isIdle;
     public Sprite sprite_rolling;
     protected override void Start()
     {
@@ -16,6 +17,7 @@ public class RolyPoly : Enemy
         play = player.GetComponent<Player>();
         bonked = false;
         attacking = false;
+        isIdle = true;
     }
     private IEnumerator Idle_CR(){
         topSpeed = 2;
@@ -26,16 +28,18 @@ public class RolyPoly : Enemy
                 yield return new WaitForFixedUpdate();
                 if(!attacking && System.Math.Abs(playerxDis) < 8){
                     StartCoroutine(AttackPlayer_CR());
+                    isIdle = false;
                     break;
                 }
             }
 
-            Move.x = (sbyte) 0;
+            if(isIdle){Move.x = (sbyte) 0;}
 
             for(int i = 0; i<100; i++){
                 yield return new WaitForFixedUpdate();
                 if(!attacking && System.Math.Abs(playerxDis) < 8){
                     StartCoroutine(AttackPlayer_CR());
+                    isIdle = false;
                     break;
                 }
             }
